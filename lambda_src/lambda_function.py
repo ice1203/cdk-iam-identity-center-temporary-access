@@ -28,7 +28,7 @@ def get_user_id(event):
 
 def lambda_handler(event, context):
     try:
-        print(f"Received event: {json.dumps(event)}")
+        # print(f"Received event: {json.dumps(event)}")
         user_id = get_user_id(event)
 
         assignment_args = {
@@ -49,13 +49,14 @@ def lambda_handler(event, context):
             print(f"Unknown action: {event['action']}")
             sys.exit(1)
 
-        if response:
-            print(response)
+        # if response:
+        #    print(response)
 
         # Delete schedule
         response = scheduler.delete_schedule(
             Name=event['schedulerarn'].rsplit('/', 1)[1])
-        if response:
-            print(response)
+        # if response:
+        #    print(response)
     except Exception as e:
         print(f"An error occurred: {e}")
+        sys.exit(1)
